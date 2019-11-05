@@ -1,75 +1,38 @@
 
-        <section class="ae-container-fluid ae-container-fluid--inner rk-portfolio">
-          <div class="au-xs-ta-center au-lg-ta-left">
-            <ul class="rk-menu rk-categories-menu">
-              <li class="rk-menu__item">
-                <a href="portfolio.html" class="rk-menu__link">Flex</a>
-              </li>
-              <li class="rk-menu__item">
-                <a href="portfolio-alt.html" class="rk-menu__link">Switch</a>
-              </li>
-              <li class="rk-menu__item">
-                <a href="portfolio-raw.html" class="rk-menu__link">Static</a>
-              </li>
-              <li class="active rk-menu__item">
-                <a href="portfolio-masonry.html" class="rk-menu__link">Masonry</a>
-              </li>
-            </ul>
-          </div>
-          <div class="ae-masonry ae-masonry-md-2 ae-masonry-xl-4">
-            <a routerLink = "/item"  class=" animated fadeIn rk-item ae-masonry__item"><img src="assets/img/project-1.jpg" alt="">
-              <div class="item-meta">
-                <h2>Essential Stationery</h2>
-                <p>Branding</p>
-              </div></a><a href="portfolio-item.html" class="rk-item ae-masonry__item"><img src="assets/img/project-2.jpg" alt="">
-              <div class="item-meta">
-                <h2>Pickled Tousled</h2>
-                <p>Art Direction</p>
-              </div></a><a href="portfolio-item.html" class="rk-item ae-masonry__item"><img src="assets/img/project-3.jpg" alt="">
-              <div class="item-meta">
-                <h2>Waistcoat vegan</h2>
-                <p>Graphic Design</p>
-              </div></a><a href="portfolio-item.html" class="rk-item ae-masonry__item"><img src="assets/img/project-4.jpg" alt="">
-              <div class="item-meta">
-                <h2>Tumblr hammock</h2>
-                <p>Packaging</p>
-              </div></a><a href="portfolio-item.html" class="rk-item ae-masonry__item"><img src="assets/img/project-5.jpg" alt="">
-              <div class="item-meta">
-                <h2>Biodiesel etsy</h2>
-                <p>Branding</p>
-              </div></a><a href="portfolio-item.html" class="rk-item ae-masonry__item"><img src="assets/img/project-6.jpg" alt="">
-              <div class="item-meta">
-                <h2>Gentrify artisan</h2>
-                <p>Graphic Design</p>
-              </div></a><a href="portfolio-item.html" class="rk-item ae-masonry__item"><img src="assets/img/project-7.jpg" alt="">
-              <div class="item-meta">
-                <h2>Plaid austin</h2>
-                <p>Graphic Design</p>
-              </div></a><a href="portfolio-item.html" class="rk-item ae-masonry__item"><img src="assets/img/project-8.jpg" alt="">
-              <div class="item-meta">
-                <h2>Trust fund</h2>
-                <p>Packaging</p>
-              </div></a><a href="portfolio-item.html" class="rk-item ae-masonry__item"><img src="assets/img/project-9.jpg" alt="">
-              <div class="item-meta">
-                <h2>Gentrify pork</h2>
-                <p>Branding</p>
-              </div></a><a href="portfolio-item.html" class="rk-item ae-masonry__item"><img src="assets/img/project-10.jpg" alt="">
-              <div class="item-meta">
-                <h2>Waistcoat ugh</h2>
-                <p>UI/UX</p>
-              </div></a><a href="portfolio-item.html" class="rk-item ae-masonry__item"><img src="assets/img/project-11.jpg" alt="">
-              <div class="item-meta">
-                <h2>Deep v kogi</h2>
-                <p>Graphic Design</p>
-              </div></a><a href="portfolio-item.html" class="rk-item ae-masonry__item"><img src="assets/img/project-12.jpg" alt="">
-              <div class="item-meta">
-                <h2>Venmo trust</h2>
-                <p>Packaging</p>
-              </div></a><a href="portfolio-item.html" class="rk-item ae-masonry__item"><img src="assets/img/project-13.jpg" alt="">
-              <div class="item-meta">
-                <h2>Venmo trust</h2>
-                <p>Ui/UX</p>
-              </div></a>
-          </div>
-        </section>
+<section class="ae-container-fluid ae-container-fluid--inner rk-portfolio">
 
+<div align="center" *ngIf="productosService.cargando">
+
+  <h2>Cargando...</h2>
+
+  <div class="loader loader--style3" title="2">
+      <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+      <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+        <animateTransform attributeType="xml"
+          attributeName="transform"
+          type="rotate"
+          from="0 25 25"
+          to="360 25 25"
+          dur="0.6s"
+          repeatCount="indefinite"/>
+        </path>
+      </svg>
+  </div>
+
+  <p>Espere porfavor</p>
+  
+</div>
+
+  <div class="ae-masonry ae-masonry-md-2 ae-masonry-xl-4" *ngIf="!productosService.cargando">
+            
+    <a *ngFor=" let producto of productosService.productos" 
+    [routerLink] = "['/item', producto.cod]"  class=" animated fadeIn rk-item ae-masonry__item">
+    <img src="assets/productos/{{producto.url}}.jpg" alt="">
+    <div class="item-meta">
+      <h2>{{producto.titulo}}</h2>
+      <p>{{producto.categoria}}</p>
+    </div>
+    </a>
+  </div>
+</section>
